@@ -16,7 +16,7 @@ public class AssignmentEntity {
 
     private String cycle;
     private String shift;
-    private Integer credit;
+    private Integer credits;
     private Integer hoursPerWeek;
     private Boolean isReady;
 
@@ -29,10 +29,14 @@ public class AssignmentEntity {
     private TeacherEntity teacher;
 
     @ManyToOne
-    @JoinColumn(name = "assignment_id")
-    private AssignmentEntity assignment;
-
-    @ManyToOne
     @JoinColumn(name = "course_id")
     private CourseEntity course;
+
+    @ManyToOne
+    @JoinColumn(name = "classroom_id")
+    private ClassroomEntity classroom;
+
+    @ManyToOne
+    @JoinColumn(name = "timeslot_id")
+    private TimeslotEntity timeslot;
 }

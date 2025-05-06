@@ -15,14 +15,6 @@ public class ScheduleDetailEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "classroom_id")
-    private ClassroomEntity classroom;
-
-    @ManyToOne
-    @JoinColumn(name = "timeslot_id")
-    private TimeslotEntity timeslot;
-
-    @ManyToOne
     @JoinColumn(name = "assignment_id")
     private AssignmentEntity assignment;
 
