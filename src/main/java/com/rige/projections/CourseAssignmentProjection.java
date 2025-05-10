@@ -3,9 +3,10 @@ package com.rige.projections;
 import java.sql.Time;
 
 public interface CourseAssignmentProjection {
-    Long getAssignmentId();
+    Long getAssignmentDetailId();
     String getCareer();
     String getCycle();
+    String getClassType();
     String getCourseId();
     String getCourseName();
     Integer getCredits();

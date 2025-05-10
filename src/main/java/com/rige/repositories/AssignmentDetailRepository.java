@@ -1,9 +1,9 @@
 package com.rige.repositories;
 
-import com.rige.entities.SpecialtyEntity;
+import com.rige.entities.AssignmentDetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SpecialtyRepository extends JpaRepository<SpecialtyEntity, Long> {
+public interface AssignmentDetailRepository extends JpaRepository<AssignmentDetailEntity, Long> {
 }

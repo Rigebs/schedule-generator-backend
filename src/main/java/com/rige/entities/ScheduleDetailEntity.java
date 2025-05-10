@@ -16,8 +16,8 @@ public class ScheduleDetailEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "assignment_id")
-    private AssignmentEntity assignment;
+    @JoinColumn(name = "assignment_detail_id")
+    private AssignmentDetailEntity assignmentDetail;
 
     @ManyToOne
     @JoinColumn(name = "schedule_id")

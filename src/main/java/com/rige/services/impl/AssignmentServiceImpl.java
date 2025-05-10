@@ -1,9 +1,6 @@
 package com.rige.services.impl;
 
-import com.rige.dtos.response.CareerResponse;
-import com.rige.dtos.response.CourseDetailResponse;
-import com.rige.dtos.response.CycleResponse;
-import com.rige.dtos.response.CourseResponse;
+import com.rige.dtos.response.*;
 import com.rige.projections.CourseAssignmentProjection;
 import com.rige.repositories.AssignmentRepository;
 import com.rige.services.AssignmentService;
@@ -21,7 +18,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     @Override
     public CareerResponse getAssignmentsByCareer(Integer careerId) {
-
         List<CourseAssignmentProjection> flatList = assignmentRepository.findAssignmentsByCareerId(careerId);
 
         CareerResponse response = new CareerResponse();
@@ -39,7 +35,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 
             if (course == null) {
                 course = new CourseResponse();
-                course.setAssignmentId(dto.getAssignmentId());
                 course.setCourseId(dto.getCourseId());
                 course.setCourse(dto.getCourseName());
                 course.setCredits(dto.getCredits());
@@ -47,23 +42,36 @@ public class AssignmentServiceImpl implements AssignmentService {
                 courseMap.put(dto.getCourseName(), course);
             }
 
-            CourseDetailResponse detail = new CourseDetailResponse();
-            detail.setClassroom(dto.getClassroomName());
-            detail.setDay(dto.getDay());
-            detail.setStartTime(dto.getStartTime());
-            detail.setEndTime(dto.getEndTime());
-            detail.setTeacher(dto.getProfessorName());
+            // 🔄 Agrupar solo por profesor
+            CourseDetailResponse existingDetail = course.getDetails().stream()
+                    .filter(d -> d.getTeacher().equals(dto.getProfessorName()))
+                    .findFirst()
+                    .orElse(null);
 
-            course.getDetails().add(detail);
+            if (existingDetail == null) {
+                existingDetail = new CourseDetailResponse();
+                existingDetail.setTeacher(dto.getProfessorName());
+                existingDetail.setClassTypes(new ArrayList<>());
+                course.getDetails().add(existingDetail);
+            }
+
+            // Ahora classroom va dentro de classType
+            ClassTypeResponse classType = new ClassTypeResponse();
+            classType.setAssignmentDetailId(dto.getAssignmentDetailId());
+            classType.setClassroom(dto.getClassroomName());
+            classType.setClassType(dto.getClassType());
+            classType.setDay(dto.getDay());
+            classType.setStartTime(dto.getStartTime());
+            classType.setEndTime(dto.getEndTime());
+
+            existingDetail.getClassTypes().add(classType);
         }
 
         List<CycleResponse> cycles = new ArrayList<>();
         for (Map.Entry<String, Map<String, CourseResponse>> cycleEntry : cycleCourseMap.entrySet()) {
             CycleResponse cycle = new CycleResponse();
             cycle.setCycle(cycleEntry.getKey());
-
-            List<CourseResponse> courses = new ArrayList<>(cycleEntry.getValue().values());
-            cycle.setCourses(courses);
+            cycle.setCourses(new ArrayList<>(cycleEntry.getValue().values()));
             cycles.add(cycle);
         }
 
