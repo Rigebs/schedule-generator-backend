@@ -7,7 +7,7 @@ public interface CourseAssignmentProjection {
     String getCareer();
     String getCycle();
     String getClassType();
-    String getCourseId();
+    Long getCourseId();
     String getCourseName();
     Integer getCredits();
     String getProfessorName();

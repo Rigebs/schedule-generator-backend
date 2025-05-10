@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class CourseResponse {
-    private String courseId;
+    private Long courseId;
     private String course;
     private Integer credits;
     private List<CourseDetailResponse> details;
