@@ -42,7 +42,6 @@ public class AssignmentServiceImpl implements AssignmentService {
                 courseMap.put(dto.getCourseName(), course);
             }
 
-            // 🔄 Agrupar solo por profesor
             CourseDetailResponse existingDetail = course.getDetails().stream()
                     .filter(d -> d.getTeacher().equals(dto.getProfessorName()))
                     .findFirst()
@@ -55,7 +54,6 @@ public class AssignmentServiceImpl implements AssignmentService {
                 course.getDetails().add(existingDetail);
             }
 
-            // Ahora classroom va dentro de classType
             ClassTypeResponse classType = new ClassTypeResponse();
             classType.setAssignmentDetailId(dto.getAssignmentDetailId());
             classType.setClassroom(dto.getClassroomName());
