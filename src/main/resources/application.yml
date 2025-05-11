@@ -9,3 +9,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+custom:
+  api-url: ${PYTHON_API_URL}

@@ -1,6 +1,8 @@
 package com.rige.controllers;
 
-import com.rige.dtos.request.ScheduleRequest;
+import com.rige.dtos.request.GenerateSchedulesRequest;
+import com.rige.dtos.response.ApiResponse;
+import com.rige.dtos.response.CareerResponse;
 import com.rige.services.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,11 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping
-    public void save(@RequestBody ScheduleRequest scheduleRequest) {
-        scheduleService.save(scheduleRequest);
+    public ApiResponse<CareerResponse> generate(@RequestBody GenerateSchedulesRequest request) {
+        return ApiResponse.<CareerResponse>builder()
+                .data(scheduleService.generateSchedules(request))
+                .message("Schedules generated successfully")
+                .success(true)
+                .build();
     }
 }

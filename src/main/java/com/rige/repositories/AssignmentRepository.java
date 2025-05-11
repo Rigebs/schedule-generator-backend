@@ -14,7 +14,4 @@ public interface AssignmentRepository extends JpaRepository<AssignmentEntity, Lo
 
     @Query(value = "CALL sp_get_assignments_by_career(:careerId)", nativeQuery = true)
     List<CourseAssignmentProjection> findAssignmentsByCareerId(@Param("careerId") Integer careerId);
-
-    @Query(value = "CALL sp_get_assignments_by_courses(:courseIds)", nativeQuery = true)
-    List<Long> findAssignmentsByCourseIdList(@Param("courseIds") String courseIds);
 }

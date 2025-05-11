@@ -1,7 +1,8 @@
 package com.rige.services;
 
-import com.rige.dtos.request.ScheduleRequest;
+import com.rige.dtos.request.GenerateSchedulesRequest;
+import com.rige.dtos.response.CareerResponse;
 
 public interface ScheduleService {
-    void save(ScheduleRequest request);
+    CareerResponse generateSchedules(GenerateSchedulesRequest request);
 }
