@@ -18,4 +18,6 @@ public class AssignmentDetailResponse {
     private String day;
     private Time startTime;
     private Time endTime;
+    private Boolean value;
+    private String message;
 }

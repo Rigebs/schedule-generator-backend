@@ -2,7 +2,6 @@ package com.rige.utils;
 
 import com.rige.dtos.http.response.AssignmentDetailResponse;
 import com.rige.dtos.response.*;
-import com.rige.projections.CourseAssignmentProjection;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -53,6 +52,8 @@ public class AssignmentMapper {
             classType.setDay(dto.getDay());
             classType.setStartTime(dto.getStartTime());
             classType.setEndTime(dto.getEndTime());
+            classType.setValue(dto.getValue());
+            classType.setMessage(dto.getMessage());
 
             existingDetail.getClassTypes().add(classType);
         }
