@@ -21,4 +21,8 @@ public class StudentEntity {
     @OneToOne
     @JoinColumn(name = "person_id")
     private PersonEntity person;
+
+    @ManyToOne
+    @JoinColumn(name = "career_id")
+    private CareerEntity career;
 }
