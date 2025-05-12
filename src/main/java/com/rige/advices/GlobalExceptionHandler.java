@@ -1,4 +1,4 @@
-package com.rige.exceptions;
+package com.rige.advices;
 
 import com.rige.dtos.response.ApiResponse;
 import org.springframework.http.HttpStatus;
